@@ -1,0 +1,1 @@
+cmd='/home/thalis/.espressif/tools/cmake/3.13.4/bin/cmake;-DSDKCONFIG=/home/thalis/eclipse-workspace-c-old/native_ota_example/sdkconfig;-DIDF_PATH=/home/thalis/esp/esp-idf;-DIDF_TARGET=esp32;-DPYTHON_DEPS_CHECKED=1;-DPYTHON=python;-DEXTRA_COMPONENT_DIRS=/home/thalis/esp/esp-idf/components/bootloader;-DLEGACY_INCLUDE_COMMON_HEADERS=;-GNinja;<SOURCE_DIR><SOURCE_SUBDIR>'
