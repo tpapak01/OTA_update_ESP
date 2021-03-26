@@ -134,7 +134,7 @@ void ota_example_task(void *pvParameters)
     strcat(FIRMWARE_URL, IP_ADDRESS);
     strcat(FIRMWARE_URL, ":8070/");
     strcat(FIRMWARE_URL, FILENAME);
-    strcat(FIRMWARE_URL, ".bin");
+    strcpy(FIRMWARE_URL + strlen(FIRMWARE_URL)-1, ".bin");
 
     esp_http_client_config_t config = {
     	.url = FIRMWARE_URL,
@@ -363,7 +363,7 @@ static bool diagnostic(void)
 
 #define SPP_TAG "BT_MODULE"
 #define SPP_SERVER_NAME "SPP_SERVER"
-#define DEVICE_NAME "NATIVE_OTA"
+#define DEVICE_NAME "DCO_PSI_A"
 #define SPP_SHOW_DATA 1
 #define SPP_SHOW_SPEED 0
 #define SPP_SHOW_MODE SPP_SHOW_DATA    /*Choose show mode: show data or speed*/
@@ -514,11 +514,11 @@ void backtofactory()
 }
 
 void define_output_desc(int bluetooth_fd){
-	#if CONFIG_BOOL_LOG_TO_BLUETOOTH_OUTPUT
+
 		dprintf(output_desc,"Output changed to Bluetooth\n");
 		output_desc = bluetooth_fd;
 		printf("OUTPUT_DESC = %d\n", output_desc);
-	#endif
+
 
 }
 
@@ -628,7 +628,8 @@ void spp_read_handle (void * param){
 					const char deli[] = " ";
 					strcpy(IP_ADDRESS, strtok((char*)spp_data, deli)); // can also call strtok(str, "["); and not use variable deli at all
 					strcpy(FILENAME, strtok(NULL, deli));
-					printf("%s %s\n", IP_ADDRESS, FILENAME);
+					FILENAME[strlen(FILENAME)-1] = '\0';
+					dprintf(output_desc, "%s %s\n", IP_ADDRESS, FILENAME);
         		}
         	}
 
@@ -642,7 +643,7 @@ void spp_read_handle (void * param){
         //    if (uart_to_bt(fd, avail_now ? 1 : 2) < 0)
         //        goto disconnected;
         //}
-        vTaskDelay(10000/portTICK_PERIOD_MS);
+        vTaskDelay(5000/portTICK_PERIOD_MS);
     }
 
 disconnected:
@@ -1003,7 +1004,7 @@ void app_main(void)
 {
 
 	strcpy(IP_ADDRESS,"192.168.192.127");
-	strcpy(FILENAME,"udp_client");
+	strcpy(FILENAME,"udp_client ");
 
 
     uint8_t sha_256[HASH_LEN] = { 0 };
