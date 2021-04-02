@@ -1003,7 +1003,7 @@ void init_BT(void)
 void app_main(void)
 {
 
-	strcpy(IP_ADDRESS,"192.168.192.127");
+	strcpy(IP_ADDRESS,"192.168.192.51");
 	strcpy(FILENAME,"udp_client ");
 
 
