@@ -363,7 +363,7 @@ static bool diagnostic(void)
 
 #define SPP_TAG "BT_MODULE"
 #define SPP_SERVER_NAME "SPP_SERVER"
-#define DEVICE_NAME "DCO_PSI_A"
+#define DEVICE_NAME "LED_PCB"
 #define SPP_SHOW_DATA 1
 #define SPP_SHOW_SPEED 0
 #define SPP_SHOW_MODE SPP_SHOW_DATA    /*Choose show mode: show data or speed*/
@@ -1003,7 +1003,7 @@ void init_BT(void)
 void app_main(void)
 {
 
-	strcpy(IP_ADDRESS,"192.168.192.51");
+	strcpy(IP_ADDRESS,"10.10.10.1");
 	strcpy(FILENAME,"udp_client ");
 
 
